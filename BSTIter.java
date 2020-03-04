@@ -38,7 +38,7 @@ public class BSTIter {
         if(root!=null)
             root.sortHelper(sorted);              //calls the sortHelper function on the root node of the tree
     }
-    public static class Node {
+    public class Node {
         private int value;
         private Node parent;
         private Node left;
@@ -63,7 +63,11 @@ public class BSTIter {
             Node toDelete = this;
             while(true) {
                 if(toDelete.right == null && toDelete.left == null) { //no children, delete it and return
-                    if (value > parent.value)
+                    if(toDelete.parent==null) {
+                        root = null;
+                        return;
+                    }
+                    if (toDelete.value > toDelete.parent.value)
                         toDelete.parent.right = null;
                     else
                         toDelete.parent.left = null;
@@ -123,6 +127,7 @@ public class BSTIter {
     }
     private Node root;
     public BSTIter() {}
+    public int counter=0;
     public void insertIter(int toInsert) {
         if(root==null) {
             root=new Node(toInsert,null);
@@ -134,6 +139,7 @@ public class BSTIter {
                 curr=curr.right;
             }
             else curr=curr.left;
+            counter++;
         }
         if(toInsert>curr.value) {                                   //we're at the bottom, insert left or right
             curr.right=new Node(toInsert,curr);
