@@ -3,44 +3,53 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        BST testRec=new BST();
-        testRec.insertRec(1);
-        testRec.insertRec(2);
-        testRec.insertRec(3);
-        System.out.println(testRec.findMaxRec().getValue());
-        System.out.println(testRec.findMinRec().getValue());
-        System.out.println(testRec.findMinRec().findNextRec().getValue());
-        System.out.println(testRec.findMinRec().findPrevRec());
-        testRec.deleteRec(2);
-        System.out.println(testRec.findMinRec().findNextRec().getValue());
+        ConstructingTrees();
 
         System.out.println();
-        BSTIter testIter=new BSTIter();
-        testIter.insertIter(1);
-        testIter.insertIter(2);
-        testIter.insertIter(3);
-        System.out.println(testIter.findMaxIter().getValue());
-        System.out.println(testIter.findMinIter().getValue());
-        System.out.println(testIter.findMinIter().findNextIter().getValue());
-        System.out.println(testIter.findMinIter().findPrevIter());
-        testIter.deleteIter(2);
-        System.out.println(testIter.findMinIter().findNextIter().getValue());
+        CompareImplementationsB();
 
         System.out.println();
-        ArrayList<Integer> toSort=new ArrayList<Integer>();
-        toSort.add(3);
-        toSort.add(4);
-        toSort.add(1);
-        ArrayList<Integer> sorted=BSTIter.sort(toSort);
-        System.out.println(sorted);
-
-        int[] array=BSTIter.getRandomArray(5);
-        for(int i=0;i<5;i++)
-            System.out.println(array[i]);
-
-        System.out.println();
-        array=BSTIter.getSortedArray(5);
-        for(int i=0;i<5;i++)
-            System.out.println(array[i]);
+        CompareImplementationsC();
+    }
+    //for 6b
+    public static void CompareImplementationsB() {
+        int[] Rarray=BSTIter.getRandomArray(10000);
+        BSTIter bst=new BSTIter();
+        AVL avl=new AVL();
+        for(int i=0;i<Rarray.length;i++) {
+            avl.insertIter(Rarray[i]);
+        }
+        System.out.println("avl tree: "+avl.counter);
+        for(int i=0;i<Rarray.length;i++) {
+            bst.insertIter(Rarray[i]);
+        }
+        System.out.println("bst tree: "+bst.counter);
+    }
+    //for 6c
+    public static void CompareImplementationsC() {
+        int[] Rarray=BSTIter.getSortedArray(10000);
+        BSTIter bst=new BSTIter();
+        AVL avl=new AVL();
+        for(int i=0;i<Rarray.length;i++) {
+            avl.insertIter(Rarray[i]);
+        }
+        System.out.println("avl tree: "+avl.counter);
+        for(int i=0;i<Rarray.length;i++) {
+            bst.insertIter(Rarray[i]);
+        }
+        System.out.println("bst tree: "+bst.counter);
+    }
+    public static void ConstructingTrees() {
+        int[] Rarray=BSTIter.getRandomArray(10000);
+        BSTIter bst=new BSTIter();
+        AVL avl=new AVL();
+        for(int i=0;i<Rarray.length;i++) {
+            avl.insertIter(Rarray[i]);
+        }
+        System.out.println("avl tree done");
+        for(int i=0;i<Rarray.length;i++) {
+            bst.insertIter(Rarray[i]);
+        }
+        System.out.println("bst done");
     }
 }
